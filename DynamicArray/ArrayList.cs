@@ -1,28 +1,5 @@
-﻿
-ArrayList List = new ArrayList();
-List.Add(0);
-List.Add(1);
-List.Add(2);
-List.Add(3);
-List.Add(4);
-List.Add(5);
-List.Add(6);
-List.Add(7);
-List.Add(8);
-List.Add(9);
-List.Add(10);
-List.Insert(0, 14);
-List.Delete(7);
-List.Print();
-List.Length();
-List.Clear();
-List.Add(0);
-List.Print();
-List.Get(0);
-List.Length();
 
-
-internal class ArrayList
+public class ArrayList
 {
     public int count = 0;
     int[] array = null;
@@ -44,7 +21,7 @@ internal class ArrayList
     {
         if (array == null)
             return;
-        Console.WriteLine("Список:");
+        //Console.WriteLine("Список:");
         for (int i = 0; i < count; i++)
             Console.Write(array[i] + " ");
         Console.Write("\n");
@@ -57,7 +34,7 @@ internal class ArrayList
     }
     public void Insert(int pos, int a) 
     {
-        if((array == null & pos == 0)|pos == count+1)// Если массив пустой или позиция на следущей от последней ячейки, то Add()
+        if((array == null & pos == 0)|pos == count-1)// Если массив пустой или позиция на следущей от последней ячейки, то Add()
         {
             Add(a);
             return;
@@ -76,24 +53,30 @@ internal class ArrayList
 
     public void Delete(int pos)
     {
-        if(array==null|pos+1 > count|pos < 0)
+        if(pos >= count|pos < 0)
             return;
 
         for (int i = pos; i < count; i++)
             if (count != 1)
+            {
+                Expand();
                 array[i] = array[i + 1];
+            }
+                
         count--;
     }
-    public void Length()
+    public int Lenght()
     {
-        Console.WriteLine("Length of list: " + count);
+        //Console.WriteLine("Length of list: " + count);
+        return count;
     }
     public void Clear()
     {
         count = 0;
     }
-    public void Get(int pos)
+    public int Get(int pos)
     {
-        Console.WriteLine("A [ " + pos +" ] = " + array[pos]);
+        //Console.WriteLine("A [ " + pos + " ] = " + array[pos]);
+        return array[pos];
     }
 }
