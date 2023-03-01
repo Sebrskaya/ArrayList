@@ -4,6 +4,26 @@ public class ArrayList
     public int count = 0;
     int[] array = null;
 
+    public int this[int i]
+    { 
+        get 
+        { 
+            if(i < count & i >= 0 )
+                return array[i];
+            else
+                return 0;
+        }
+
+        set
+        {
+            if (i >= count)
+            {
+                Expand();
+                array[i] = value;
+            }
+        }
+    }
+    
     public void Expand()
     {
         if (array == null)
@@ -32,19 +52,19 @@ public class ArrayList
         array[count] = a;
         count++;
     }
-    public void Insert(int pos, int a) 
+    public void Insert(int pos, int a)
     {
-        if((array == null & pos == 0)|pos == count-1)// Если массив пустой или позиция на следущей от последней ячейки, то Add()
+        if ((array == null & pos == 0) | pos == count)// Если массив пустой или позиция на следущей от последней ячейки, то Add()
         {
             Add(a);
             return;
         }
-        if(pos > count | pos < 0| (array == null & pos != 0))//проверка
+        if (pos > count | pos < 0 | (array == null & pos != 0))//проверка
             return;
 
         //Все остальные случаи
         Expand();
-        for(int i = count; i >= pos; i--)
+        for (int i = count; i >= pos; i--)
             if (i != 0)
                 array[i] = array[i - 1];
         array[pos] = a;
@@ -53,7 +73,7 @@ public class ArrayList
 
     public void Delete(int pos)
     {
-        if(pos >= count|pos < 0)
+        if (pos >= count | pos < 0)
             return;
 
         for (int i = pos; i < count; i++)
@@ -62,7 +82,7 @@ public class ArrayList
                 Expand();
                 array[i] = array[i + 1];
             }
-                
+
         count--;
     }
     public int Lenght()
@@ -73,10 +93,5 @@ public class ArrayList
     public void Clear()
     {
         count = 0;
-    }
-    public int Get(int pos)
-    {
-        //Console.WriteLine("A [ " + pos + " ] = " + array[pos]);
-        return array[pos];
     }
 }
