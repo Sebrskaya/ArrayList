@@ -17,6 +17,24 @@ public class ChainList
         Node head = null;
         int count = 0;
 
+        public int this[int i]
+        {
+            get
+            {
+                if (i < count & i >= 0)
+                    return GetNode(i).Data;
+                else
+                    return 0;
+            }
+
+            set
+            {
+                if (i >= count)
+                {
+                    GetNode(i).Data = value;
+                }
+            }
+        }
         public Node GetNode(int pos)
         {
             Node pred = head;
@@ -61,6 +79,7 @@ public class ChainList
                 count++;
                 return;
             }
+         
             Node pred = GetNode(pos - 1);
             pred.Next = new Node(a, pred.Next);
             count++;
@@ -83,7 +102,7 @@ public class ChainList
         }
         public void Delete(int pos)
         {
-            if (pos < 0 | pos > count - 1|count == 0)
+            if (pos < 0 | pos > count - 1 | count == 0)
                 return;
 
             if (count == 1)
@@ -108,12 +127,6 @@ public class ChainList
         {
             //Console.WriteLine("List lenght:\n" + count);
             return count;
-        }
-
-        public int Get(int pos)
-        {
-            //Console.WriteLine("A [ " + pos + " ] = " + GetNode(pos).Data);
-            return GetNode(pos).Data;
         }
     }
 
